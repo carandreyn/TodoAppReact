@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleTodo } from '../store/slices/todosSlice';
+import { deleteTodo, toggleTodo } from '../store/slices/todosSlice';
 
 function TodoList(props) {
     const todos = useSelector((state) => state.todos.todos);
@@ -17,7 +17,7 @@ function TodoList(props) {
                     <input className="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" checked={todo.completed} onChange={() => handleCheckboxChange(todo.id)}/>
                 </div>
                 <li key={todo.id} style={{width: '450px'}} className='list-group-item'>{todo.title}</li>
-                <button className='btn btn-danger m-2' style={{width: '25px', height: '25px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}><i className="bi bi-x-square"></i> </button>        
+                <button className='btn btn-danger m-2' style={{width: '25px', height: '25px', display: 'flex', justifyContent: 'center', alignItems: 'center'}} onClick={() => dispatch(deleteTodo(todo.id))}><i className="bi bi-x-square"></i> </button>        
             </div>          
         ))}
     </ul> 

@@ -16,9 +16,9 @@ export const todosSlice = createSlice({
         },
         deleteTodo: (state, action) => {
             const todoId = action.payload;
-            const index = state.findIndex((todo) => todo.id === todoId);
+            const index = state.todos.findIndex((todo) => todo.id === todoId);
             if (index !== -1) {
-              state.splice(index, 1);
+              state.todos.splice(index, 1);
             }
           },
         toggleTodo: (state, action) => {
