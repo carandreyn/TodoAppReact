@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addTodo } from '../store/slices/todosSlice';
+import TodoList from './TodoList';
 
 function TodoInput() {
     const [todo, setTodo] = useState("");
@@ -42,14 +43,10 @@ function TodoInput() {
             <button className='btn btn-primary' type="submit" onClick={handleAddDispatch}>Add</button>
         </div>
         <div className='mt-2 list-group' style={{display: 'flex', justifyContent: 'center'}}>
-            <ul >
-                {todos.map((todo) => (
-                    <li className='list-group-item' key={todo.id}>{todo.title}</li>                   
-                ))}
-            </ul>           
+            <TodoList todo={todo}/>          
         </div>
     </div>
   )
 }
 
-export default TodoInput;
+export default TodoInput

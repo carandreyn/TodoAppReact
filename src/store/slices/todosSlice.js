@@ -14,11 +14,23 @@ export const todosSlice = createSlice({
         addTodo: (state, action) => {
             state.todos.push(action.payload);
         },
-        removeTodo: (state, action) => {
-            state.todos.pop();
-        }
+        deleteTodo: (state, action) => {
+            const todoId = action.payload;
+            const index = state.findIndex((todo) => todo.id === todoId);
+            if (index !== -1) {
+              state.splice(index, 1);
+            }
+          },
+        toggleTodo: (state, action) => {
+            const todoId = action.payload;
+            const todo = state.todos.find((todo) => todo.id === todoId);
+            if (todo) {
+              todo.completed = !todo.completed;
+            }
+            console.log(todo.completed)
+          },
     }
 });
 
-export const {addTodo, removeTodo} = todosSlice.actions;
+export const {addTodo, deleteTodo, toggleTodo} = todosSlice.actions;
 export default todosSlice.reducer;
